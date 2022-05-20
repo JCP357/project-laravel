@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Travel extends Model
 {
     use HasFactory;
-
+protected $table='travels';
 protected $primary="id";
 protected $fillable=["price","from","to"];
 
@@ -17,3 +17,4 @@ protected $fillable=["price","from","to"];
 
 }
 //aqui van las relaciones  $table->integer("user_id");
+

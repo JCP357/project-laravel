@@ -7,6 +7,13 @@ use App\Models\Travel;
 
 class TravelController extends Controller
 {
+
+    public function __invoke(Request $request)
+    {
+        return request()->header();
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -47,11 +54,11 @@ class TravelController extends Controller
 
         // $travel->user_id->Auth_id;
 
-        $travel->price->$request->input('price');
+        $travel->price=$request->input('price');
 
-        $travel->from->$request->input('from');
+        $travel->from=$request->input('from');
 
-        $travel->to->$request->input('to');
+        $travel->to=$request->input('to');
 
         $travel->save();
 

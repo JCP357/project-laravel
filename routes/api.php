@@ -19,11 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get("travels", App\Http\Controllers\TravelController::class, "index");
+Route::get("travels", "App\Http\Controllers\TravelController@index");
 
 Route::get("travels/{id}", App\Http\Controllers\TravelController::class, "show");
 
-Route::post("travels", App\Http\Controllers\TravelController::class, "store");
+Route::post("travels", "App\Http\Controllers\TravelController@store");
 
 Route::put("travels/{id}", App\Http\Controllers\TravelController::class, "update");
 
