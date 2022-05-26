@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Travel;
+use Illuminate\Support\Facades\Auth;
 
 class TravelController extends Controller
 {
@@ -50,16 +51,15 @@ class TravelController extends Controller
     public function store(Request $request)
     {
 
-        $travel = new Travel();
+        $travel=Travel::create([
+            'user_id'=>Auth::id(),
 
-        // $travel->user_id->Auth_id;
-
-        $travel->price=$request->input('price');
-
-        $travel->from=$request->input('from');
-
-        $travel->to=$request->input('to');
-
+            'price'=>$request->price,
+            
+            'from'=>$request->from,
+            
+            'to'=>$request->to,
+        ]);
         $travel->save();
 
         return response()->json([
@@ -108,11 +108,13 @@ class TravelController extends Controller
     public function update(Request $request, $id)
     {
         $travel = Travel::all()->find($id);
-        $travel->price->$request->input('price');
 
-        $travel->from->$request->input('from');
+        
+        $travel->price->$request->price;
 
-        $travel->to->$request->input('to');
+        $travel->from->$request->from;
+
+        $travel->to->$request->to;
 
         $travel->save();
 
@@ -132,6 +134,6 @@ class TravelController extends Controller
      */
     public function destroy($id)
     {
-        //
+      
     }
 }
