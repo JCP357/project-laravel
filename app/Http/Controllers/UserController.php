@@ -11,11 +11,23 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * 
+     * 
      */
+
+
+    public function __invoke(Request $request)
+    {
+        return request()->header();
+    }
+
+
+
     public function index()
     {
       return response()->json([
-          
+
 "message" => "Te devuelvo los usuarios :D",
 
       ]);
