@@ -54,7 +54,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user=User::create([
+            
+            'email'=>$request->email,
+            
+            'password'=>$request->password,
+            
+        ]);
+        $user->save();
+
+        return response()->json([
+
+            "data" => $user,
+
+            "message" => "Usuario Registrado correctamente",
+        ], 200);
     }
 
     /**
@@ -63,9 +77,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Request $resquest)
     {
-        //
+
+
+        
+
     }
 
     /**
