@@ -28,12 +28,12 @@ class UserController extends Controller
     {
 
 
-        
-      return response()->json([
 
-"message" => "Te devuelvo los usuarios :D",
+        return response()->json([
 
-      ]);
+            "message" => "Te devuelvo los usuarios :D",
+
+        ]);
     }
 
     /**
@@ -54,12 +54,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user=User::create([
-            
-            'email'=>$request->email,
-            
-            'password'=>$request->password,
-            
+        $user = User::create([
+
+            'email' => $request->email,
+
+            'password' => $request->password,
+
         ]);
         $user->save();
 
@@ -80,9 +80,22 @@ class UserController extends Controller
     public function show(Request $resquest)
     {
 
+        $user = User::where("email", $resquest->email)->where("password", $resquest->password)->first();
 
-        
+        if ($user) {
 
+            return response()->json([
+                "message" => "found user",
+
+                "data" => $user,
+            ]);
+        } else {
+
+            return response()->json([
+                "message" => "no user",
+                "data" => "null",
+            ]);
+        }
     }
 
     /**
@@ -116,7 +129,5 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-       
-
     }
 }

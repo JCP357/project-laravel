@@ -35,7 +35,7 @@ Route::delete("travels/{id}", "App\Http\Controllers\TravelController@destroy");
 
 Route::get("users", "App\Http\Controllers\UserController@index");
 
-Route::get("users/{id}","App\Http\Controllers\UserController@show");
+Route::get("users/{request}","App\Http\Controllers\UserController@show");
 
 Route::post("users", "App\Http\Controllers\UserController@store");
 
