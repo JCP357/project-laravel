@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TravelController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,26 +20,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get("/travels", "App\Http\Controllers\TravelController@index");
+// Route::get("/travels", "App\Http\Controllers\TravelController@index");
 
-Route::get("travels/{id}","App\Http\Controllers\TravelController@show");
+// Route::get("travels/{id}","App\Http\Controllers\TravelController@show");
 
-Route::post("travels", "App\Http\Controllers\TravelController@store");
+// Route::post("travels", "App\Http\Controllers\TravelController@store");
 
-Route::put("travels/{id}", "App\Http\Controllers\TravelController@update");
+// Route::put("travels/{id}", "App\Http\Controllers\TravelController@update");
 
-Route::delete("travels/{id}", "App\Http\Controllers\TravelController@destroy");
+// Route::delete("travels/{id}", "App\Http\Controllers\TravelController@destroy");
 
 
 //users
 
 
-Route::get("users", "App\Http\Controllers\UserController@index");
 
-Route::get("users/{request}","App\Http\Controllers\UserController@show");
+Route::resources([
+'users' => 'App\Http\Controllers\UserController',
+'travels' => 'App\Http\Controllers\TravelController',
 
-Route::post("users", "App\Http\Controllers\UserController@store");
+]);
 
-Route::put("users/{id}", "App\Http\Controllers\UserController@update");
+Route::post("userLogin", "App\Http\Controllers\UserController@Login");
 
-Route::delete("users/{id}", "App\Http\Controllers\UserController@destroy");
+// Route::get("users/{id}","App\Http\Controllers\UserController@show");
+
+// Route::post("users", "App\Http\Controllers\UserController@store");
+
+// Route::put("users/{id}", "App\Http\Controllers\UserController@update");
+
+// Route::delete("users/{id}", "App\Http\Controllers\UserController@destroy");

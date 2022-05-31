@@ -31,7 +31,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+
     ];
+
+    protected $appends=["provincia","coche"];
+
+
+
 
     /**
      * The attributes that should be cast.
@@ -41,4 +47,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getCantidadAttribute(){
+
+        $provincia=Provincia::where("id_provincia",$this->attributes['id_provincia'])->first();
+
+        return $provincia['provincia'];
+
+
+        
+    }
+
 }

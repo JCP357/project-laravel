@@ -126,6 +126,10 @@ class TravelController extends Controller
         ], 200);
     }
 
+    public function showFrom(Request $request)
+    {
+       
+    }
     /**
      * Remove the specified resource from storage.
      *

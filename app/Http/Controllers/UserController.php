@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class UserController extends Controller
 {
@@ -77,25 +79,22 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $resquest)
+    public function show($id)
     {
-
-        $user = User::where("email", $resquest->email)->where("password", $resquest->password)->first();
+        $user = User::find($id);
 
         if ($user) {
 
             return response()->json([
-                "message" => "found user",
-
+                "message" => "Found this",
                 "data" => $user,
             ]);
-        } else {
-
-            return response()->json([
-                "message" => "no user",
-                "data" => "null",
-            ]);
         }
+
+        return response()->json([
+            "message" => "Found Nothing",
+            "data" => null,
+        ]);
     }
 
     /**
@@ -104,9 +103,24 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function Login(Request $request)
     {
-        //
+
+        $user = User::Where('email', $request->email)->where('password', $request->password)->first();
+
+        if ($user) {
+
+            return response()->json([
+                "data"=> $user,
+                "message" => "Entro " . $request->email, 
+            ]);
+
+        }else {
+            return response()->json([
+                "data"=> null,
+                "message" =>  "Email o contraseña incorrectos" ,
+            ]);
+        }
     }
 
     /**
@@ -116,7 +130,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update($id, Request $request)
     {
         //
     }
