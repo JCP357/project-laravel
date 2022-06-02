@@ -15,7 +15,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array< string, string,string>
      */
     protected $fillable = [
         'name',
@@ -49,7 +49,15 @@ class User extends Authenticatable
     ];
 
 
-    public function getCantidadAttribute(){
+    public function getProvinciaAttribute(){
+
+        $provincia=Provincia::where("id_provincia",$this->attributes['id_provincia'])->first();
+
+        return $provincia['provincia'];
+
+
+        
+    } public function getCocheAttribute(){
 
         $provincia=Provincia::where("id_provincia",$this->attributes['id_provincia'])->first();
 

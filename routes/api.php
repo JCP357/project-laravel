@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resources([
 'users' => 'App\Http\Controllers\UserController',
 'travels' => 'App\Http\Controllers\TravelController',
+'provincias' => 'App\Http\Controllers\ProvinciaController',
 
 ]);
 

@@ -52,14 +52,20 @@ class TravelController extends Controller
     {
 
         $travel=Travel::create([
-            'user_id'=>Auth::id(),
 
+            'user_id'=>$request->user_id,
+
+            'id_provincia'=>$request->id_provincia,
+            
             'price'=>$request->price,
             
             'from'=>$request->from,
             
             'to'=>$request->to,
+            
+            'request'=>$request->is_request,
         ]);
+
         $travel->save();
 
         return response()->json([
