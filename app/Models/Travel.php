@@ -11,10 +11,24 @@ class Travel extends Model
 protected $table='travels';
 protected $primary="id";
 protected $fillable=["id_provincia","user_id","price","from","to","request"];
+protected $appends=["username"];
+
+
+
+
+
+
+public function getUsernameAttribute(){
+
+$user_id=$this->user_id;
+$username=User::where('id',$user_id)->first();
+
+    return $username->name;
+
+}
 
 
 
 
 }
-//aqui van las relaciones  $table->integer("user_id");
 
