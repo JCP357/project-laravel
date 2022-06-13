@@ -62,6 +62,8 @@ class TravelController extends Controller
             'from'=>$request->from,
             
             'to'=>$request->to,
+
+            'seats'=>$request->asientos,
             
             'request'=>$request->is_request,
         ]);
