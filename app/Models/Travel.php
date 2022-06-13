@@ -9,8 +9,7 @@ class Travel extends Model
 {
     use HasFactory;
 protected $table='travels';
-protected $primary="id";
-protected $fillable=["id_provincia","user_id","price","from","to","request"];
+protected $guarded=["id"];
 protected $appends=["username"];
 
 
