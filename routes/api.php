@@ -22,13 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get("/travels", "App\Http\Controllers\TravelController@index");
 
-// Route::get("travels/{id}","App\Http\Controllers\TravelController@show");
+Route::post("userRegister","App\Http\Controllers\UserController@store");
 
 // Route::post("travels", "App\Http\Controllers\TravelController@store");
 
 // Route::put("travels/{id}", "App\Http\Controllers\TravelController@update");
 
-// Route::delete("travels/{id}", "App\Http\Controllers\TravelController@destroy");
+Route::delete("travels/{id}", "App\Http\Controllers\TravelController@destroy");
 
 
 //users

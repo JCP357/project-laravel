@@ -14,7 +14,7 @@ class TravelController extends Controller
         return request()->header();
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -51,21 +51,21 @@ class TravelController extends Controller
     public function store(Request $request)
     {
 
-        $travel=Travel::create([
+        $travel = Travel::create([
 
-            'user_id'=>$request->user_id,
+            'user_id' => $request->user_id,
 
-            'id_provincia'=>$request->id_provincia,
-            
-            'price'=>$request->price,
-            
-            'from'=>$request->from,
-            
-            'to'=>$request->to,
+            'id_provincia' => $request->id_provincia,
 
-            'seats'=>$request->asientos,
-            
-            'request'=>$request->is_request,
+            'price' => $request->price,
+
+            'from' => $request->from,
+
+            'to' => $request->to,
+
+            'seats' => $request->asientos,
+
+            'request' => $request->is_request,
         ]);
 
         $travel->save();
@@ -86,7 +86,7 @@ class TravelController extends Controller
      */
     public function show($id)
     {
-        $travel = Travel::all()->find($id);
+        $travel = Travel::where("user_id", $id)->get();
 
 
         return response()->json([
@@ -117,14 +117,8 @@ class TravelController extends Controller
     {
         $travel = Travel::all()->find($id);
 
-        
-        $travel->price->$request->price;
 
-        $travel->from->$request->from;
 
-        $travel->to->$request->to;
-
-        $travel->save();
 
         return response()->json([
 
@@ -136,7 +130,7 @@ class TravelController extends Controller
 
     public function showFrom(Request $request)
     {
-       
+        
     }
     /**
      * Remove the specified resource from storage.
@@ -146,6 +140,13 @@ class TravelController extends Controller
      */
     public function destroy($id)
     {
-      
+        $travel = Travel::find($id);
+
+        $travel->delete();
+
+        return response()->json([
+            "message" => "Viaje borrado correctamente",
+        ]);
+
     }
 }

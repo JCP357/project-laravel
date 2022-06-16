@@ -17,11 +17,7 @@ class User extends Authenticatable
      *
      * @var array< string, string,string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -34,7 +30,7 @@ class User extends Authenticatable
 
     ];
 
-    protected $appends=["provincia","coche"];
+    protected $appends = ["provincia", "coche"];
 
 
 
@@ -49,22 +45,26 @@ class User extends Authenticatable
     ];
 
 
-    public function getProvinciaAttribute(){
-
-        $provincia=Provincia::where("id_provincia",$this->attributes['id_provincia'])->first();
-
-        return $provincia['provincia'];
-
-
-        
-    } public function getCocheAttribute(){
-
-        $provincia=Provincia::where("id_provincia",$this->attributes['id_provincia'])->first();
-
-        return $provincia['provincia'];
+    public function getProvinciaAttribute()
+    {
+        try {
+            //code...
 
 
-        
+            if ($this->attributes['id_provincia']) {
+                $provincia = Provincia::where("id_provincia", $this->attributes['id_provincia'])->first();
+            }
+
+            if ($provincia) {
+                return $provincia['provincia'];
+            } else {
+                return "";
+            }
+        } catch (\Throwable $th) {
+            return "";
+        }
     }
-
+    public function getCocheAttribute()
+    {
+    }
 }
